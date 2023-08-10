@@ -57,6 +57,10 @@ router.post('/:cid/product/:pid', async (req, res) => {
     try {
       const cartId = req.params.cid;
       const productId = req.params.pid;
+
+      // Obtén el usuario actual
+      const userId = req.session.user._id; // Obtener el ID del usuario de la sesión
+      const user = await User.findById(userId);
   
       const product = await Product.findById(productId).lean().exec();
   
@@ -88,6 +92,12 @@ router.post('/:cid/product/:pid', async (req, res) => {
       }
   
       await Cart.findByIdAndUpdate(cartId, { products: cart.products }).exec();
+
+      user.cart.products.push({
+        product: productId,
+        quantity: 1
+      });
+      await user.save();
   
       res.status(201).json(cart);
     } catch (error) {

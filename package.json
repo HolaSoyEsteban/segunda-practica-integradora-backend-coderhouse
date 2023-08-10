@@ -1,7 +1,7 @@
 {
   "name": "segunda-practica-integradora",
   "version": "1.0.0",
-  "description": "Segunda practica Integradora del curso de Backend en Coderhouse",
+  "description": "Segunda practica Integradora del curso de Backend en Coderhouse ... Terminada",
   "main": "src/app.js",
   "type": "module",
   "scripts": {
